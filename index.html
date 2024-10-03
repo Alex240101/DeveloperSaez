@@ -1,0 +1,1054 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DESARROLLADOR DE SISTEMAS - ALEX SAEZ</title>
+    <style>
+        :root {
+            --primary-color: #0a0a1a;
+            --secondary-color: #16213e;
+            --accent-color: #0f3460;
+            --text-color: #e94560;
+            --light-text: #f1f1f1;
+            --background-color: #050505;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Poppins', sans-serif;
+            background-color: var(--background-color);
+            color: var(--light-text);
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        header {
+            background-color: rgba(10, 10, 26, 0.8);
+            padding: 20px 0;
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+            transition: all 0.3s ease;
+        }
+
+        header.scrolled {
+            background-color: rgba(10, 10, 26, 0.95);
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+        }
+
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-size: 24px;
+            font-weight: bold;
+            color: var(--text-color);
+            text-decoration: none;
+        }
+
+        .nav-links {
+            display: flex;
+            list-style: none;
+        }
+
+        .nav-links li {
+            margin-left: 30px;
+        }
+
+        .nav-links a {
+            color: var(--light-text);
+            text-decoration: none;
+            font-weight: 500;
+            transition: color 0.3s ease;
+        }
+
+        .nav-links a:hover {
+            color: var(--text-color);
+        }
+
+        #hero {
+            height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+            background-color: var(--background-color);
+        }
+
+        .hero-content {
+            z-index: 1;
+        }
+
+        .hero-content h1 {
+            font-size: 48px;
+            margin-bottom: 20px;
+            opacity: 0;
+            transform: translateY(20px);
+            animation: fadeInUp 1s ease forwards 0.5s;
+        }
+
+        .hero-content p {
+            font-size: 24px;
+            margin-bottom: 30px;
+            opacity: 0;
+            transform: translateY(20px);
+            animation: fadeInUp 1s ease forwards 0.7s;
+        }
+
+        .btn {
+            display: inline-block;
+            background-color: var(--text-color);
+            color: var(--light-text);
+            padding: 12px 30px;
+            border-radius: 5px;
+            text-decoration: none;
+            font-weight: bold;
+            transition: all 0.3s ease;
+            border: none;
+            cursor: pointer;
+            opacity: 0;
+            transform: translateY(20px);
+            animation: fadeInUp 1s ease forwards 0.9s;
+        }
+
+        .btn:hover {
+            background-color: var(--accent-color);
+            transform: translateY(-3px);
+            box-shadow: 0 4px 15px rgba(233, 69, 96, 0.3);
+        }
+
+        section {
+            padding: 80px 0;
+        }
+
+        .section-title {
+            font-size: 36px;
+            text-align: center;
+            margin-bottom: 50px;
+            color: var(--text-color);
+        }
+
+        .skills-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 30px;
+        }
+
+        .skill-card {
+            background-color: var(--secondary-color);
+            border-radius: 10px;
+            padding: 20px;
+            text-align: center;
+            transition: all 0.3s ease;
+            opacity: 0;
+            transform: translateY(20px);
+        }
+
+        .skill-card.active {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .skill-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 10px 20px rgba(15, 52, 96, 0.2);
+        }
+
+        .skill-card i {
+            font-size: 48px;
+            margin-bottom: 15px;
+            color: var(--text-color);
+        }
+
+        .projects-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+        }
+
+        .project-card {
+            background-color: var(--secondary-color);
+            border-radius: 10px;
+            overflow: hidden;
+            transition: all 0.3s ease;
+            opacity: 0;
+            transform: translateY(20px);
+        }
+
+        .project-card.active {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .project-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 10px 20px rgba(15, 52, 96, 0.2);
+        }
+
+        .project-image {
+            height: 200px;
+            background-size: cover;
+            background-position: center;
+        }
+
+        .project-info {
+            padding: 20px;
+        }
+
+        .project-title {
+            font-size: 24px;
+            margin-bottom: 10px;
+            color: var(--text-color);
+        }
+
+        .project-description {
+            font-size: 14px;
+            margin-bottom: 15px;
+        }
+
+        .project-link {
+            color: var(--text-color);
+            text-decoration: none;
+            font-weight: bold;
+            transition: color 0.3s ease;
+        }
+
+        .project-link:hover {
+            color: var(--light-text);
+        }
+
+        #contact {
+            background-color: var(--secondary-color);
+        }
+
+        .contact-form {
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 5px;
+            color: var(--text-color);
+        }
+
+        .form-group input,
+        .form-group textarea {
+            width: 100%;
+            padding: 10px;
+            border-radius: 5px;
+            border: none;
+            background-color: rgba(255, 255, 255, 0.1);
+            color: var(--light-text);
+            transition: all 0.3s ease;
+        }
+
+        .form-group input:focus,
+        .form-group textarea:focus {
+            outline: none;
+            box-shadow: 0 0 0 2px var(--text-color);
+        }
+
+        .form-group textarea {
+            height: 150px;
+        }
+
+        .social-links {
+            display: flex;
+            justify-content: center;
+            margin-top: 30px;
+        }
+
+        .social-links a {
+            color: var(--light-text);
+            font-size: 24px;
+            margin: 0 15px;
+            transition: all 0.3s ease;
+        }
+
+        .social-links a:hover {
+            color: var(--text-color);
+            transform: translateY(-3px);
+        }
+
+        footer {
+            background-color: var(--primary-color);
+            text-align: center;
+            padding: 20px 0;
+        }
+
+        .modal {
+            display: none;
+            position: fixed;
+            z-index: 1001;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            overflow: auto;
+            background-color: rgba(0,0,0,0.8);
+        }
+
+        .modal-content {
+            margin: 10% auto;
+            padding: 20px;
+            width: 80%;
+            max-width: 700px;
+            background-color: var(--secondary-color);
+            border-radius: 10px;
+        }
+
+        .close {
+            color: var(--light-text);
+            float: right;
+            font-size: 28px;
+            font-weight: bold;
+            cursor: pointer;
+        }
+
+        .close:hover {
+            color: var(--text-color);
+        }
+
+        #videoPlayer, #imageViewer {
+            width: 100%;
+            max-height: 400px;
+            object-fit: contain;
+        }
+
+        #welcome-message {
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            background-color: var(--secondary-color);
+            color: var(--light-text);
+            padding: 20px;
+            border-radius: 10px;
+            text-align: center;
+            z-index: 1002;
+            opacity: 0;
+            transition: opacity 0.5s ease-in-out;
+        }
+
+        #welcome-message.show {
+            opacity: 1;
+        }
+
+        #welcome-message.hide {
+            opacity: 0;
+        }
+
+        @keyframes fadeInUp {
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .particles {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+        }
+
+        #catalog {
+            padding: 80px 0;
+            background-color: var(--primary-color);
+        }
+
+        .catalog-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 20px;
+        }
+
+        .catalog-item {
+            position: relative;
+            overflow: hidden;
+            border-radius: 10px;
+            cursor: pointer;
+        }
+
+        .catalog-item img {
+            width: 100%;
+            height: 200px;
+            object-fit: cover;
+            transition: transform 0.3s ease;
+        }
+
+        .catalog-item:hover img {
+            transform: scale(1.1);
+        }
+
+        .catalog-item-overlay {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            background-color: rgba(0, 0, 0, 0.7);
+            padding: 10px;
+            transform: translateY(100%);
+            transition: transform 0.3s ease;
+        }
+
+        .catalog-item:hover .catalog-item-overlay {
+            transform: translateY(0);
+        }
+
+        .catalog-item-title {
+            color: var(--light-text);
+            font-size: 16px;
+            margin: 0;
+        }
+
+        #scroll-to-top {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            background-color: var(--text-color);
+            color: var(--light-text);
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-size: 24px;
+            cursor: pointer;
+            opacity: 0;
+            transition: opacity 0.3s ease, transform 0.3s ease;
+        }
+
+        #scroll-to-top.show {
+            opacity: 1;
+        }
+
+        #scroll-to-top:hover {
+            transform: translateY(-5px);
+        }
+
+        /* Estrellas fugaces */
+        @keyframes shootingStars {
+            0% {
+                transform: translateX(0) translateY(0) rotate(0deg);
+                opacity: 1;
+            }
+            100% {
+                transform: translateX(-500px) translateY(500px) rotate(45deg);
+                opacity: 0;
+            }
+        }
+
+        .shooting-star {
+            position: fixed;
+            width: 2px;
+            height: 2px;
+            background-color: #fff;
+            border-radius: 50%;
+            box-shadow: 0 0 5px #fff, 0 0 10px #fff, 0 0 15px #fff, 0 0 20px #fff;
+            animation: shootingStars 5s linear infinite;
+            z-index: 0;
+        }
+
+        .shooting-star::before {
+            content: '';
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            width: 50px;
+            height: 1px;
+            background: linear-gradient(90deg, #fff, transparent);
+        }
+
+        #map {
+            height: 400px;
+            width: 100%;
+            border-radius: 10px;
+            margin-top: 30px;
+        }
+
+        /* Nuevos estilos para efectos visuales */
+        .glowing-border {
+            border: 2px solid transparent;
+            border-image: linear-gradient(to right, var(--text-color), var(--accent-color));
+            border-image-slice: 1;
+            animation: glowingBorder 2s ease-in-out infinite alternate;
+        }
+
+        @keyframes glowingBorder {
+            from {
+                box-shadow: 0 0 5px var(--text-color), 0 0 10px var(--accent-color);
+            }
+            to {
+                box-shadow: 0 0 20px var(--text-color), 0 0 30px var(--accent-color);
+            }
+        }
+
+        .floating {
+            animation: floating 3s ease-in-out infinite;
+        }
+
+        @keyframes floating {
+            0% { transform: translate(0, 0px); }
+            50% { transform: translate(0, 15px); }
+            100% { transform: translate(0, -0px); }
+        }
+
+        .pulse {
+            animation: pulse 2s infinite;
+        }
+
+        @keyframes pulse {
+            0% {
+                transform: scale(1);
+            }
+            50% {
+                transform: scale(1.05);
+            }
+            100% {
+                transform: scale(1);
+            }
+        }
+
+        /* Estilos responsivos */
+        @media (max-width: 768px) {
+            .nav-links {
+                display: none;
+            }
+
+            .hero-content h1 {
+                font-size: 36px;
+            }
+
+            .hero-content p {
+                font-size: 18px;
+            }
+
+            .section-title {
+                font-size: 28px;
+            }
+
+            .skills-grid, .projects-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/animate.css@4.1.1/animate.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div id="welcome-message" class="glowing-border">
+        <h2>¡Bienvenido a mi mundo!</h2>
+        <p>Mi nombre es Alex Saez, desarrollador de software especializado en soluciones para farmacias, retail y más.</p>
+    </div>
+
+    <header>
+        <nav class="container">
+            <a href="#" class="logo">DEVELOPER ALEX SAEZ</a>
+            <ul class="nav-links">
+                <li><a href="#hero">Inicio</a></li>
+                <li><a href="#about">Sobre Mí</a></li>
+                <li><a href="#skills">Habilidades</a></li>
+                <li><a href="#projects">Proyectos</a></li>
+                <li><a href="#catalog">Catálogo</a></li>
+                <li><a href="#services">Servicios</a></li>
+                <li><a href="#testimonials">Testimonios</a></li>
+                <li><a href="#contact">Contacto</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <section id="hero">
+        <div class="particles"></div>
+        <div class="hero-content">
+            <h1 class="animate__animated animate__fadeInDown">DEVELOPER ALEX SAEZ</h1>
+            <p class="animate__animated animate__fadeInUp">Transformando ideas en soluciones de software innovadoras</p>
+            <a href="#contact" class="btn animate__animated animate__fadeInUp">Contáctame</a>
+        </div>
+    </section>
+
+    <section id="about">
+        <div class="container">
+            <h2 class="section-title animate__animated animate__fadeIn">Sobre Mí</h2>
+            <p class="animate__animated animate__fadeIn">Soy un desarrollador de software con amplia experiencia en la creación de soluciones para diversos sectores, incluyendo farmacias, retail y moda. Mi pasión es transformar ideas en aplicaciones eficientes y fáciles de usar que impulsen el crecimiento de los negocios.</p>
+        </div>
+    </section>
+
+    <section id="skills">
+        <div class="container">
+            <h2 class="section-title animate__animated animate__fadeIn">Mis Habilidades</h2>
+            <div class="skills-grid">
+                <div class="skill-card animate__animated animate__fadeInUp">
+                    <i class="fas fa-pills pulse"></i>
+                    <h3>Software para Farmacias</h3>
+                    <p>Sistemas de gestión de inventario y ventas para farmacias</p>
+                </div>
+                <div class="skill-card animate__animated animate__fadeInUp">
+                    <i class="fas fa-shopping-cart pulse"></i>
+                    <h3>Soluciones Retail</h3>
+                    <p>Plataformas de e-commerce y sistemas de punto de venta</p>
+                </div>
+                <div class="skill-card animate__animated animate__fadeInUp">
+                    <i class="fas fa-tshirt pulse"></i>
+                    <h3>Software para Moda</h3>
+                    <p>Gestión de inventario y catálogos para tiendas de ropa</p>
+                </div>
+                <div class="skill-card animate__animated animate__fadeInUp">
+                    <i class="fas fa-mobile-alt pulse"></i>
+                    <h3>Desarrollo Móvil</h3>
+                    <p>Aplicaciones nativas y multiplataforma para iOS y Android</p>
+                </div>
+                <div class="skill-card animate__animated animate__fadeInUp">
+                    <i class="fas fa-database pulse"></i>
+                    <h3>Bases de Datos</h3>
+                    <p>Diseño e implementación de bases de datos eficientes</p>
+                </div>
+                <div class="skill-card animate__animated animate__fadeInUp">
+                    <i class="fas fa-cloud pulse"></i>
+                    <h3>Cloud Computing</h3>
+                    <p>Implementación y gestión de soluciones en la nube</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="projects">
+        <div class="container">
+            <h2 class="section-title animate__animated animate__fadeIn">Proyectos Destacados</h2>
+            <div class="projects-grid">
+                <div class="project-card animate__animated animate__fadeInUp">
+                    <div class="project-image" style="background-image: url('imagenes/imagen2.jpg');"></div>
+                    <div class="project-info">
+                        <h3 class="project-title">Sistema de Gestión para Farmacias</h3>
+                        <p class="project-description">Plataforma integral para la gestión de inventario, ventas y recetas en farmacias.</p>
+                        <a href="#" class="project-link" data-video="videos/video1.mp4">Ver video</a>
+                    </div>
+                </div>
+                <div class="project-card animate__animated animate__fadeInUp">
+                    <div class="project-image" style="background-image: url('imagenes/imagen3.jpg');"></div>
+                    <div class="project-info">
+                        <h3 class="project-title">Plataforma E-commerce para Retail</h3>
+                        <p class="project-description">Solución completa de comercio electrónico para grandes cadenas de retail.</p>
+                        <a href="#" class="project-link" data-image="imagenes/imagen4.jpg">Ver capturas</a>
+                    </div>
+                </div>
+                <div class="project-card animate__animated animate__fadeInUp">
+                    <div class="project-image" style="background-image: url('imagenes/imagen5.jpg');"></div>
+                    <div class="project-info">
+                        <h3 class="project-title">App de Catálogo para Moda</h3>
+                        <p class="project-description">Aplicación móvil para la gestión y visualización de catálogos de moda en tiempo real.</p>
+                        <a href="#" class="project-link" data-video="videos/video2.mp4">Ver video</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="catalog">
+        <div class="container">
+            <h2 class="section-title animate__animated animate__fadeIn">Catálogo de Desarrollo</h2>
+            <div class="catalog-grid">
+                <!-- Las imágenes se cargarán dinámicamente con JavaScript -->
+            </div>
+        </div>
+    </section>
+
+    <section id="services">
+        <div class="container">
+            <h2 class="section-title animate__animated animate__fadeIn">Mis Servicios</h2>
+            <div class="skills-grid">
+                <div class="skill-card animate__animated animate__fadeInUp">
+                    <i class="fas fa-code pulse"></i>
+                    <h3>Desarrollo a Medida</h3>
+                    <p>Creación de software personalizado para necesidades específicas</p>
+                </div>
+                <div class="skill-card animate__animated animate__fadeInUp">
+                    <i class="fas fa-mobile-alt pulse"></i>
+                    <h3>Desarrollo de Apps</h3>
+                    <p>Diseño y desarrollo de aplicaciones móviles para iOS y Android</p>
+                </div>
+                <div class="skill-card animate__animated animate__fadeInUp">
+                    <i class="fas fa-cogs pulse"></i>
+                    <h3>Integración de Sistemas</h3>
+                    <p>Conexión de diferentes plataformas y APIs para un flujo de trabajo eficiente</p>
+                </div>
+                <div class="skill-card animate__animated animate__fadeInUp">
+                    <i class="fas fa-cloud-upload-alt pulse"></i>
+                    <h3>Migración a la Nube</h3>
+                    <p>Traslado de sistemas locales a infraestructuras en la nube</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="testimonials">
+        <div class="container">
+            <h2 class="section-title animate__animated animate__fadeIn">Testimonios</h2>
+            <div class="skills-grid">
+                <div class="skill-card animate__animated animate__fadeInUp">
+                    <i class="fas fa-quote-left pulse"></i>
+                    <p>"Alex desarrolló un sistema que revolucionó la gestión de nuestra farmacia. Altamente recomendado."</p>
+                    <h3>- María González, Farmacia del Sol</h3>
+                </div>
+                <div class="skill-card animate__animated animate__fadeInUp">
+                    <i class="fas fa-quote-left pulse"></i>
+                    <p>"La plataforma e-commerce que Alex creó para nosotros aumentó nuestras ventas en un 200%. Increíble trabajo."</p>
+                    <h3>- Carlos Rodríguez, MegaRetail</h3>
+                </div>
+                <div class="skill-card animate__animated animate__fadeInUp">
+                    <i class="fas fa-quote-left pulse"></i>
+                    <p>"La app de catálogo que Alex desarrolló es exactamente lo que necesitábamos. Nuestros clientes la adoran."</p>
+                    <h3>- Laura Martínez, ModaExpress</h3>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="contact">
+        <div class="container">
+            <h2 class="section-title animate__animated animate__fadeIn">Contáctame</h2>
+            <form class="contact-form animate__animated animate__fadeInUp" id="contactForm">
+                <div class="form-group">
+                    <label for="name">Nombre</label>
+                    <input type="text" id="name" name="name" required>
+                </div>
+                <div class="form-group">
+                    <label for="email">Email</label>
+                    <input type="email" id="email" name="email" required>
+                </div>
+                <div class="form-group">
+                    <label for="message">Mensaje</label>
+                    <textarea id="message" name="message" required></textarea>
+                </div>
+                <button type="submit" class="btn">Enviar Mensaje</button>
+            </form>
+            <div class="social-links animate__animated animate__fadeInUp">
+                <a href="https://www.facebook.com/AlexSaezLara" target="_blank"><i class="fab fa-facebook"></i></a>
+                <a href="https://wa.me/+51934498803" target="_blank"><i class="fab fa-whatsapp"></i></a>
+                <a href="https://www.instagram.com/alexsaez.24/" target="_blank"><i class="fab fa-instagram"></i></a>
+            </div>
+            <div id="map" class="animate__animated animate__fadeIn"></div>
+        </div>
+    </section>
+
+    <footer>
+        <div class="container">
+            <p>&copy; 2024 DEVELOPER ALEX SAEZ. Todos los derechos reservados.</p>
+            <p>Teléfono: +51 934498803</p>
+            <p>Email: cesar10_52@hotmail.com</p>
+        </div>
+    </footer>
+
+    <div id="modal" class="modal">
+        <div class="modal-content">
+            <span class="close">&times;</span>
+            <video id="videoPlayer" controls style="display: none;"></video>
+            <img id="imageViewer" style="display: none;">
+        </div>
+    </div>
+
+    <div id="scroll-to-top">
+        <i class="fas fa-chevron-up"></i>
+    </div>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/particles.js/2.0.0/particles.min.js"></script>
+    <script>
+        // Welcome message
+        window.addEventListener('load', function() {
+            const welcomeMessage = document.getElementById('welcome-message');
+            welcomeMessage.classList.add('show');
+            setTimeout(() => {
+                welcomeMessage.classList.add('hide');
+                setTimeout(() => {
+                    welcomeMessage.style.display = 'none';
+                }, 500);
+            }, 5000);
+        });
+
+        // Particles.js configuration
+        particlesJS('hero', {
+            particles: {
+                number: { value: 80, density: { enable: true, value_area: 800 } },
+                color: { value: "#ffffff" },
+                shape: { type: "circle" },
+                opacity: { value: 0.5, random: false },
+                size: { value: 3, random: true },
+                line_linked: { enable: true, distance: 150, color: "#ffffff", opacity: 0.4, width: 1 },
+                move: { enable: true, speed: 6, direction: "none", random: false, straight: false, out_mode: "out", bounce: false }
+            },
+            interactivity: {
+                detect_on: "canvas",
+                events: { onhover: { enable: true, mode: "repulse" }, onclick: { enable: true, mode: "push" }, resize: true },
+                modes: { repulse: { distance: 100, duration: 0.4 }, push: { particles_nb: 4 } }
+            },
+            retina_detect: true
+        });
+
+        // Smooth scrolling
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                document.querySelector(this.getAttribute('href')).scrollIntoView({
+                    behavior: 'smooth'
+                });
+            });
+        });
+
+        // Header scroll effect
+        window.addEventListener('scroll', () => {
+            const header = document.querySelector('header');
+            if (window.scrollY > 100) {
+                header.classList.add('scrolled');
+            } else {
+                header.classList.remove('scrolled');
+            }
+        });
+
+        // Form submission
+        const form = document.getElementById('contactForm');
+        form.addEventListener('submit', (e) => {
+            e.preventDefault();
+            alert('¡Gracias por tu mensaje! Te responderé pronto.');
+            form.reset();
+        });
+
+        // Scroll reveal animation
+        function reveal() {
+            var reveals = document.querySelectorAll(".skill-card, .project-card");
+            for (var i = 0; i < reveals.length; i++) {
+                var windowHeight = window.innerHeight;
+                var elementTop = reveals[i].getBoundingClientRect().top;
+                var elementVisible = 150;
+                if (elementTop < windowHeight - elementVisible) {
+                    reveals[i].classList.add("active");
+                } else {
+                    reveals[i].classList.remove("active");
+                }
+            }
+        }
+
+        window.addEventListener("scroll", reveal);
+        reveal();
+
+        // Modal functionality
+        const modal = document.getElementById("modal");
+        const closeBtn = document.getElementsByClassName("close")[0];
+        const videoPlayer = document.getElementById("videoPlayer");
+        const imageViewer = document.getElementById("imageViewer");
+
+        document.querySelectorAll('.project-link').forEach(link => {
+            link.addEventListener('click', function(e) {
+                e.preventDefault();
+                const videoSrc = this.getAttribute('data-video');
+                const imageSrc = this.getAttribute('data-image');
+                
+                if (videoSrc) {
+                    videoPlayer.src = videoSrc;
+                    videoPlayer.style.display = 'block';
+                    imageViewer.style.display = 'none';
+                } else if (imageSrc) {
+                    imageViewer.src = imageSrc;
+                    imageViewer.style.display = 'block';
+                    videoPlayer.style.display = 'none';
+                }
+                
+                modal.style.display = "block";
+            });
+        });
+
+        closeBtn.onclick = function() {
+            modal.style.display = "none";
+            videoPlayer.pause();
+            videoPlayer.currentTime = 0;
+        }
+
+        window.onclick = function(event) {
+            if (event.target == modal) {
+                modal.style.display = "none";
+                videoPlayer.pause();
+                videoPlayer.currentTime = 0;
+            }
+        }
+
+        // Scroll to top functionality
+        const scrollToTopBtn = document.getElementById("scroll-to-top");
+
+        window.addEventListener("scroll", () => {
+            if (window.pageYOffset > 100) {
+                scrollToTopBtn.classList.add("show");
+            } else {
+                scrollToTopBtn.classList.remove("show");
+            }
+        });
+
+        scrollToTopBtn.addEventListener("click", () => {
+            window.scrollTo({
+                top: 0,
+                behavior: "smooth"
+            });
+        });
+
+        // Catalog image loading
+        const catalogGrid = document.querySelector('.catalog-grid');
+        for (let i = 1; i <= 15; i++) {
+            const catalogItem = document.createElement('div');
+            catalogItem.className = 'catalog-item animate__animated animate__fadeIn';
+            catalogItem.innerHTML = `
+                <img src="imagenes/imagen${i}.jpg" alt="Software Development ${i}">
+                <div class="catalog-item-overlay">
+                    <h3 class="catalog-item-title">Desarrollo de Software ${i}</h3>
+                </div>
+            `;
+            catalogGrid.appendChild(catalogItem);
+        }
+
+        // Estrellas fugaces
+        function createShootingStar() {
+            const star = document.createElement('div');
+            star.className = 'shooting-star';
+            star.style.left = `${Math.random() * 100}%`;
+            star.style.top = `${Math.random() * 100}%`;
+            star.style.animationDuration = `${Math.random() * 3 + 2}s`;
+            document.body.appendChild(star);
+
+            setTimeout(() => {
+                star.remove();
+            }, 5000);
+        }
+
+        setInterval(createShootingStar, 1000);
+
+        // Google Maps (sin API key)
+        function initMap() {
+            const mapOptions = {
+                center: { lat: -33.4569, lng: -70.6483 }, // Santiago, Chile coordinates
+                zoom: 15,
+                styles: [
+                    {
+                        "elementType": "geometry",
+                        "stylers": [{"color": "#242f3e"}]
+                    },
+                    {
+                        "elementType": "labels.text.stroke",
+                        "stylers": [{"color": "#242f3e"}]
+                    },
+                    {
+                        "elementType": "labels.text.fill",
+                        "stylers": [{"color": "#746855"}]
+                    },
+                    {
+                        "featureType": "administrative.locality",
+                        "elementType": "labels.text.fill",
+                        "stylers": [{"color": "#d59563"}]
+                    },
+                    {
+                        "featureType": "poi",
+                        "elementType": "labels.text.fill",
+                        "stylers": [{"color": "#d59563"}]
+                    },
+                    {
+                        "featureType": "poi.park",
+                        "elementType": "geometry",
+                        "stylers": [{"color": "#263c3f"}]
+                    },
+                    {
+                        "featureType": "poi.park",
+                        "elementType": "labels.text.fill",
+                        "stylers": [{"color": "#6b9a76"}]
+                    },
+                    {
+                        "featureType": "road",
+                        "elementType": "geometry",
+                        "stylers": [{"color": "#38414e"}]
+                    },
+                    {
+                        "featureType": "road",
+                        "elementType": "geometry.stroke",
+                        "stylers": [{"color": "#212a37"}]
+                    },
+                    {
+                        "featureType": "road",
+                        "elementType": "labels.text.fill",
+                        "stylers": [{"color": "#9ca5b3"}]
+                    },
+                    {
+                        "featureType": "road.highway",
+                        "elementType": "geometry",
+                        "stylers": [{"color": "#746855"}]
+                    },
+                    {
+                        "featureType": "road.highway",
+                        "elementType": "geometry.stroke",
+                        "stylers": [{"color": "#1f2835"}]
+                    },
+                    {
+                        "featureType": "road.highway",
+                        "elementType": "labels.text.fill",
+                        "stylers": [{"color": "#f3d19c"}]
+                    },
+                    {
+                        "featureType": "transit",
+                        "elementType": "geometry",
+                        "stylers": [{"color": "#2f3948"}]
+                    },
+                    {
+                        "featureType": "transit.station",
+                        "elementType": "labels.text.fill",
+                        "stylers": [{"color": "#d59563"}]
+                    },
+                    {
+                        "featureType": "water",
+                        "elementType": "geometry",
+                        "stylers": [{"color": "#17263c"}]
+                    },
+                    {
+                        "featureType": "water",
+                        "elementType": "labels.text.fill",
+                        "stylers": [{"color": "#515c6d"}]
+                    },
+                    {
+                        "featureType": "water",
+                        "elementType": "labels.text.stroke",
+                        "stylers": [{"color": "#17263c"}]
+                    }
+                ]
+            };
+            const map = new google.maps.Map(document.getElementById('map'), mapOptions);
+            const marker = new google.maps.Marker({
+                position: mapOptions.center,
+                map: map,
+                title: 'DEVELOPER ALEX SAEZ'
+            });
+        }
+
+        // Inicializar el mapa
+        initMap();
+    </script>
+</body>
+</html>
